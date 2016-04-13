@@ -1,0 +1,2007 @@
+{
+  "slaves": [
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade31.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S297",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.64:5051",
+      "registered_time": 1457020967.35321,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127850,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127850,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade36.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S296",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.18:5051",
+      "registered_time": 1457020965.4588,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade35.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S291",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.17:5051",
+      "registered_time": 1457020946.64972,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade32.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S290",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.65:5051",
+      "registered_time": 1457020946.62484,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade65.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S289",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.85:5051",
+      "registered_time": 1456263613.58247,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 3619875,
+        "high": 1,
+        "low": 2,
+        "mem": 127787,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 3619875,
+        "high": 1,
+        "low": 2,
+        "mem": 127787,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade52.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S255",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.72:5051",
+      "registered_time": 1454004109.51008,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127850,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127850,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade31.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S252",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.51:5051",
+      "registered_time": 1452617646.7997,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1586791,
+        "high": 1,
+        "low": 2,
+        "mem": 95647,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1586791,
+        "high": 1,
+        "low": 2,
+        "mem": 95647,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 2,
+        "disk": 0,
+        "low": 2,
+        "mem": 30720
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade9.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S250",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.29:5051",
+      "registered_time": 1452205427.48913,
+      "reregistered_time": 1456543670.81139,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade23.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S248",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.43:5051",
+      "registered_time": 1452205426.48178,
+      "reregistered_time": 1456543670.45565,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 7,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 76800,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade15.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S245",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.35:5051",
+      "registered_time": 1452205421.04111,
+      "reregistered_time": 1456543670.48034,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade7.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S7",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.27:5051",
+      "registered_time": 1452039889.10444,
+      "reregistered_time": 1456543671.5254,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade49.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S260",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.69:5051",
+      "registered_time": 1454100130.49354,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade4.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S4",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.24:5051",
+      "registered_time": 1452039887.13784,
+      "reregistered_time": 1456543670.03585,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade2.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S1",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.22:5051",
+      "registered_time": 1452039886.94375,
+      "reregistered_time": 1456543670.57715,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 2,
+        "disk": 0,
+        "low": 2,
+        "mem": 30720
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade22.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S9",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.42:5051",
+      "registered_time": 1452040790.1508,
+      "reregistered_time": 1456543670.89581,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 7,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 76800,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade61.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S58",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.81:5051",
+      "registered_time": 1451534477.47133,
+      "reregistered_time": 1451534477.47156,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade62.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S57",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.82:5051",
+      "registered_time": 1451534477.47058,
+      "reregistered_time": 1451534477.47076,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade55.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S53",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.75:5051",
+      "registered_time": 1451534487.83011,
+      "reregistered_time": 1451534487.83031,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade34.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S293",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.16:5051",
+      "registered_time": 1457020953.35013,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade6.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S5",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.26:5051",
+      "registered_time": 1452039888.38837,
+      "reregistered_time": 1456543670.13355,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade16.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S75",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.36:5051",
+      "registered_time": 1451534477.46725,
+      "reregistered_time": 1456543670.40172,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade30.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S294",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.63:5051",
+      "registered_time": 1457020956.81564,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127850,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127850,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade34.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S264",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.54:5051",
+      "registered_time": 1455224299.49554,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 32,
+        "disk": 1586824,
+        "high": 1,
+        "low": 2,
+        "mem": 95612,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 32,
+        "disk": 1586824,
+        "high": 1,
+        "low": 2,
+        "mem": 95612,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade1.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S0",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.21:5051",
+      "registered_time": 1452039886.22623,
+      "reregistered_time": 1456543670.58956,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade21.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S76",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.41:5051",
+      "registered_time": 1451534480.32909,
+      "reregistered_time": 1456543670.45484,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 7,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 76800,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade8.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S66",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.28:5051",
+      "registered_time": 1451534477.46624,
+      "reregistered_time": 1456543671.65402,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade11.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S71",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.31:5051",
+      "registered_time": 1451534477.46345,
+      "reregistered_time": 1456543670.89767,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade37.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S295",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.19:5051",
+      "registered_time": 1457020960.00631,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade51.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S263",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.71:5051",
+      "registered_time": 1454968095.88906,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade3.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S3",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.23:5051",
+      "registered_time": 1452039886.95748,
+      "reregistered_time": 1456543670.73842,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-ovp6.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S82",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.145.126:5051",
+      "registered_time": 1451534476.90663,
+      "reregistered_time": 1456543670.39322,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 48,
+        "disk": 53097,
+        "high": 1,
+        "low": 2,
+        "mem": 127809,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 48,
+        "disk": 53097,
+        "high": 1,
+        "low": 2,
+        "mem": 127809,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 7,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 76800,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade10.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S246",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.30:5051",
+      "registered_time": 1452205425.04151,
+      "reregistered_time": 1456543670.26521,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade19.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S44",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.39:5051",
+      "registered_time": 1451534477.46493,
+      "reregistered_time": 1451534477.46509,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1586791,
+        "high": 1,
+        "low": 2,
+        "mem": 95647,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1586791,
+        "high": 1,
+        "low": 2,
+        "mem": 95647,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 2,
+        "disk": 0,
+        "low": 2,
+        "mem": 30720
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade57.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S54",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.77:5051",
+      "registered_time": 1451534478.16917,
+      "reregistered_time": 1451534478.16947,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade53.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S50",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.73:5051",
+      "registered_time": 1451534480.34241,
+      "reregistered_time": 1451534480.34259,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "pek"
+      },
+      "hostname": "pek-blade33.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S292",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.153.66:5051",
+      "registered_time": 1457020949.76499,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade12.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S244",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.32:5051",
+      "registered_time": 1452205409.89122,
+      "reregistered_time": 1456543671.19632,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade5.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S2",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.25:5051",
+      "registered_time": 1452039886.95702,
+      "reregistered_time": 1456543672.14645,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade54.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S49",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.74:5051",
+      "registered_time": 1451534478.18509,
+      "reregistered_time": 1451534478.18525,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade50.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S262",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.70:5051",
+      "registered_time": 1454103193.98645,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218177,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade63.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S60",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.83:5051",
+      "registered_time": 1451534481.81727,
+      "reregistered_time": 1451534481.81777,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade13.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S8",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.33:5051",
+      "registered_time": 1452039889.82748,
+      "reregistered_time": 1456543671.51924,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade58.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S55",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.78:5051",
+      "registered_time": 1451534478.89075,
+      "reregistered_time": 1451534478.89117,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade64.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S24",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.84:5051",
+      "registered_time": 1451534479.01472,
+      "reregistered_time": 1451534479.01497,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade24.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S83",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.44:5051",
+      "registered_time": 1451534480.34315,
+      "reregistered_time": 1456543671.83247,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 7,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 76800,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade60.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S56",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.80:5051",
+      "registered_time": 1451534481.04852,
+      "reregistered_time": 1451534483.5832,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "yow"
+      },
+      "hostname": "yow-blade14.wrs.com",
+      "id": "3743f39d-34bf-41c9-80ea-912dc08e8a6c-S249",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@128.224.137.34:5051",
+      "registered_time": 1452205426.49514,
+      "reregistered_time": 1456543671.76087,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "unreserved_resources": {
+        "cpus": 16,
+        "disk": 1635172,
+        "high": 1,
+        "low": 2,
+        "mem": 47263,
+        "ports": "[31000-32000]"
+      },
+      "used_resources": {
+        "cpus": 6,
+        "disk": 0,
+        "high": 1,
+        "low": 2,
+        "mem": 46080
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade56.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S51",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.76:5051",
+      "registered_time": 1451534481.78155,
+      "reregistered_time": 1451534481.78185,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    },
+    {
+      "active": true,
+      "attributes": {
+        "location": "ala"
+      },
+      "hostname": "ala-blade59.wrs.com",
+      "id": "20151117-124631-627641235-5050-12999-S59",
+      "offered_resources": {
+        "cpus": 0,
+        "disk": 0,
+        "mem": 0
+      },
+      "pid": "slave(1)@147.11.105.79:5051",
+      "registered_time": 1451534484.15105,
+      "reregistered_time": 1451534484.1517,
+      "reserved_resources": {},
+      "resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "unreserved_resources": {
+        "cpus": 40,
+        "disk": 11218209,
+        "high": 1,
+        "low": 2,
+        "mem": 127818,
+        "ports": "[31000-32000]",
+        "world": 1
+      },
+      "used_resources": {
+        "cpus": 3,
+        "disk": 0,
+        "low": 2,
+        "mem": 61440,
+        "world": 1
+      }
+    }
+  ]
+}

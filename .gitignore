@@ -2,3 +2,17 @@
 .#*
 *.swp
 *.elc
+configs
+randconfigs*
+worldconfigs*
+scheduler_stop
+drain_hosts.txt
+buildconfigs
+flycheck_*
+dist/*
+*.egg-info/*
+wraxl_env
+build
+.eggs/*
+.check
+.tmp

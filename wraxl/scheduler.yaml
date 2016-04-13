@@ -1,0 +1,106 @@
+---
+registry: wr-docker-registry:5000/
+redis: ala-lpgweb2.wrs.com
+queue_prefix: wraxl
+lava: ala-lpd-lava
+lava_user: admin
+lava_token: 9l6j5zxsnxjl2e7tjq6ms0nmp06lhzf0nlgqd4okmxp44a7cj32j9hoon5s3owzfpfsmodgg0pa9hdjrtxc33lfph7nd4sfo7sp0o3ppclr570mp3kqr6bk5m0eudnio
+log_level: 20
+releases:
+  - name: 5
+    branch: WRLINUX_5_0_1_HEAD
+    configs: randconfigs-5
+    world_configs: worldconfigs-5
+    hosts:
+      - centos5_64
+      - centos5_32
+      - centos6_64
+      - centos6_32
+      - sled11_32
+      - sled11_64
+    weight: 7
+    email:
+      - lpd-eng-buildreports-wrl5@windriver.com
+  - name: 6
+    branch: WRLINUX_6_0_HEAD
+    configs: randconfigs-6
+    world_configs: worldconfigs-6
+    hosts:
+      - centos5_64
+      - centos5_32
+      - centos6_64
+      - centos6_32
+      - centos7_64
+      - fedora20_64
+      - fedora20_32
+      - fedora21_64
+      - opensuse131_64
+      - opensuse131_32
+      - opensuse132_64
+      - sled11_32
+      - sled11_64
+      - ubuntu1204_64
+      - ubuntu1404_64
+      - ubuntu1404_32
+    weight: 8
+    email:
+      - lpd-eng-buildreports-wrl6@windriver.com
+  - name: 7
+    branch: WRLINUX_7_0_HEAD
+    configs: randconfigs-7
+    world_configs: worldconfigs-7
+    hosts:
+      - centos6_64
+      - centos7_64
+      - fedora20_64
+      - fedora21_64
+      - fedora22_64
+      - opensuse131_64
+      - opensuse132_64
+      - sled11_64
+      - sled12_64
+      - ubuntu1204_64
+      - ubuntu1404_64
+      - wrl7_64
+      - wrl7_32
+    weight: 25
+    email:
+      - lpd-eng-buildreports-wrl7@windriver.com
+  - name: 8
+    branch: WRLINUX_8_0_HEAD
+    configs: randconfigs-8
+    world_configs: worldconfigs-8
+    hosts:
+      - centos6_64
+      - centos7_64
+      - fedora22_64
+      - fedora23_64
+      - opensuse132_64
+      - sled12_64
+      - ubuntu1204_64
+      - ubuntu1404_64
+      - ubuntu1510_64
+      - wrl7_64
+      - wrl8_64
+    weight: 40
+    email:
+      - lpd-eng-buildreports-wrl8@windriver.com
+  - name: 9
+    branch: master
+    configs: randconfigs-9
+    world_configs: worldconfigs-9
+    hosts:
+      - centos6_64
+      - centos7_64
+      - fedora22_64
+      - fedora23_64
+      - opensuse132_64
+      - sled12_64
+      - ubuntu1204_64
+      - ubuntu1404_64
+      - ubuntu1510_64
+      - wrl7_64
+      - wrl8_64
+    weight: 20
+    email:
+      - lpd-eng-buildreports-wrl9@windriver.com
