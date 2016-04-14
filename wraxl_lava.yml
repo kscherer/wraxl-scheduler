@@ -3,8 +3,6 @@ services:
   lava-server:
     hostname: lava-server
     image: $REGISTRY:5000/lava:$LAVA_VERSION
-    links:
-      - "scheduler"
     ports:
       - "8443:443"
       - "5555:5555"
@@ -14,5 +12,7 @@ services:
     volumes_from:
       - container:lava-server-data
   scheduler:
+    links:
+      - "lava-server"
     environment:
-      WRAXL_LAVA_SERVER: lava-server:8443
+      WRAXL_LAVA_SERVER: lava-server
