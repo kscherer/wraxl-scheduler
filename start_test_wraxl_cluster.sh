@@ -2,24 +2,6 @@
 set -uo pipefail
 IFS=$'\n\t'
 
-command -v docker >/dev/null 2>&1 || { echo >&2 "I require docker but it's not installed. https://docs.docker.com/install/  Aborting."; exit 1; }
-
-DOCKER_CMD="docker"
-if groups | grep -vq docker; then
-    echo "This user is not in the docker group. Will attempt to run docker info using sudo."
-    DOCKER_CMD=(sudo docker)
-fi
-
-${DOCKER_CMD[*]} info > /dev/null 2>&1
-if [ $? != 0 ]; then
-    echo >&2 "Unable to run '${DOCKER_CMD[*]}'. Either give the user sudo access to run docker or add it to the docker group. Aborting."
-    exit 1
-fi
-
-echo 'Successfully ran docker info'
-
-command -v docker-compose >/dev/null 2>&1 || { echo >&2 "I require docker-compose but it's not installed. https://docs.docker.com/compose/install/  Aborting."; exit 1; }
-
 # taken from http://stackoverflow.com/questions/4023830/bash-how-compare-two-strings-in-version-format
 function vercomp {
     if [[ "$1" == "$2" ]]; then
@@ -51,6 +33,52 @@ function vercomp {
     return 0
 }
 
+usage() {
+    cat <<EOF
+Usage $0 [--registry] [--file] [--rm]
+  --registry=(ala|yow|pek)-lpdfs01: Docker registry to download images from.
+     Will attempt to locate closest registry if not provided.
+
+  --file <compose yaml>: Extra compose yaml file(s) to extend wraxl_test.yml
+     Accepts multiple --file parameters
+
+  --rm: Delete containers and volumes when script exits
+EOF
+    exit 1
+}
+
+CLEANUP=0
+export REGISTRY=
+FILES=(--file wraxl_test.yml)
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --registry=*) REGISTRY="${1#*=}"; shift 1;;
+        --registry)   REGISTRY="$2"; shift 2;;
+        --file)       FILES=("${FILES[@]}" --file $2); shift 2;;
+        --rm)         CLEANUP=1; shift 1;;
+        *)            usage ;;
+    esac
+done
+
+command -v docker >/dev/null 2>&1 || { echo >&2 "I require docker but it's not installed. https://docs.docker.com/install/  Aborting."; exit 1; }
+
+DOCKER_CMD="docker"
+if groups | grep -vq docker; then
+    echo "This user is not in the docker group. Will attempt to run docker info using sudo."
+    DOCKER_CMD=(sudo docker)
+fi
+
+${DOCKER_CMD[*]} info > /dev/null 2>&1
+if [ $? != 0 ]; then
+    echo >&2 "Unable to run '${DOCKER_CMD[*]}'. Either give the user sudo access to run docker or add it to the docker group. Aborting."
+    exit 1
+fi
+
+echo 'Successfully ran docker info'
+
+command -v docker-compose >/dev/null 2>&1 || { echo >&2 "I require docker-compose but it's not installed. https://docs.docker.com/compose/install/  Aborting."; exit 1; }
+
 # require docker-compose version >= 1.7.0
 DCOMPOSE_VERSION=$(docker-compose --version | cut -d' ' -f 3)
 vercomp '1.6.2' "$DCOMPOSE_VERSION"
@@ -60,32 +88,6 @@ if [ $? != '2' ]; then
 fi
 
 echo "Docker Compose is present and is version $DCOMPOSE_VERSION"
-
-usage() {
-    echo >&2 "Usage $0 [--registry=(ala|yow|pek)-lpdfs01] [--file <compose yaml>]"
-    echo >&2 "  The script will attempt to locate closest registry if not provided."
-    echo >&2 "  If registry is not specified, the script will attempt to locate closest registry."
-    exit 1
-}
-
-export REGISTRY=
-FILES=(--file wraxl_test.yml)
-
-while [ "$#" -gt 0 ]; do
-    case "$1" in
-        --registry=*) REGISTRY="${1#*=}"; shift 1;;
-        --registry)   REGISTRY="$2"; shift 2;;
-        --file)       FILES=("${FILES[@]}" --file $2); shift 2;;
-        *)            usage ;;
-    esac
-done
-
-for i in "$@"
-do
-    case $i in
-    esac
-    shift
-done
 
 if [ -z "$REGISTRY" ]; then
     echo "The closest internal docker registry was not specified with --registry"
@@ -131,4 +133,9 @@ echo Starting wraxl with: docker-compose ${FILES[*]} up
 
 sleep 1
 
-docker-compose ${FILES[*]} up
+docker-compose ${FILES[*]} up --abort-on-container-exit
+
+if [ "$CLEANUP" == '1' ]; then
+    echo "Cleaning up images and volumes"
+    docker-compose ${FILES[*]} rm --force -v --all
+fi
