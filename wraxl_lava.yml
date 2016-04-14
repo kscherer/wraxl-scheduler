@@ -1,0 +1,14 @@
+version: '2'
+services:
+  lava-server:
+    image: $REGISTRY:5000/lava:$LAVA_VERSION
+    links:
+      - "scheduler"
+    ports:
+      - "8443:443"
+      - "5555:5555"
+      - "5556:5556"
+    tmpfs:
+      - /tmp
+    volumes_from:
+      - container:lava-server-data

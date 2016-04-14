@@ -35,7 +35,7 @@ function vercomp {
 
 usage() {
     cat <<EOF
-Usage $0 [--registry] [--file] [--rm]
+Usage $0 [--registry] [--file] [--rm] [--with-lava]
   --registry=(ala|yow|pek)-lpdfs01: Docker registry to download images from.
      Will attempt to locate closest registry if not provided.
 
@@ -43,20 +43,26 @@ Usage $0 [--registry] [--file] [--rm]
      Accepts multiple --file parameters
 
   --rm: Delete containers and volumes when script exits
+
+  --with-lava: Creates lava server and data volumes to integrate with wraxl scheduler
 EOF
     exit 1
 }
 
 CLEANUP=0
+WITH_LAVA=0
+export LAVA_VERSION=2016.3
 export REGISTRY=
 FILES=(--file wraxl_test.yml)
 
 while [ "$#" -gt 0 ]; do
     case "$1" in
-        --registry=*) REGISTRY="${1#*=}"; shift 1;;
-        --registry)   REGISTRY="$2"; shift 2;;
-        --file)       FILES=("${FILES[@]}" --file $2); shift 2;;
-        --rm)         CLEANUP=1; shift 1;;
+        --registry=*)     REGISTRY="${1#*=}"; shift 1;;
+        --registry)       REGISTRY="$2"; shift 2;;
+        --file)           FILES=("${FILES[@]}" --file $2); shift 2;;
+        --rm)             CLEANUP=1; shift 1;;
+        --with-lava)      WITH_LAVA=1; shift 1;;
+        --lava-version=*) LAVA_VERSION="${1#*=}"; shift 1;;
         *)            usage ;;
     esac
 done
@@ -123,9 +129,43 @@ if [ $? != 0 ]; then
     export HOST=$(hostname --ip-address)
 fi
 
-if [ -d '/tmp/mesos/slaves' ]; then
-    echo >&2 "The /tmp/mesos directory must be empty. Aborting"
-    exit 1
+if [ "$WITH_LAVA" == '1' ]; then
+    LAVA_IMAGE="${REGISTRY}:5000/lava:${LAVA_VERSION}"
+    LAVA_IMAGE_ID=$(${DOCKER_CMD[*]} images "$LAVA_IMAGE" )
+    if [ -z "$LAVA_IMAGE_ID" ]; then
+        echo "Pulling $LAVA_IMAGE"
+        ${DOCKER_CMD[*]} pull "$LAVA_IMAGE"
+    fi
+    LAVA_WORKER_IMAGE="${REGISTRY}:5000/lava-worker:${LAVA_VERSION}"
+    LAVA_WORKER_IMAGE_ID=$(${DOCKER_CMD[*]} images "$LAVA_WORKER_IMAGE" )
+    if [ -z "$LAVA_WORKER_IMAGE_ID" ]; then
+        echo "Pulling $LAVA_WORKER_IMAGE"
+        ${DOCKER_CMD[*]} pull "$LAVA_WORKER_IMAGE"
+    fi
+    echo "$LAVA_IMAGE and $LAVA_WORKER_IMAGE are installed"
+
+    # check if lava-server-data already exists
+    ${DOCKER_CMD[*]} inspect lava-server-data &> /dev/null
+    if [ $? != 0 ]; then
+        echo "Creating lava-server-data data-only container"
+        ${DOCKER_CMD[*]} create -v /var/lib/postgresql -v /var/log -v /run \
+                         -v /var/lib/lava-server --name lava-server-data \
+                         "${LAVA_IMAGE}" /bin/true
+        echo "Initial database setup"
+        mkdir -p /tmp/lava-server
+        curl -s -o /tmp/lava-server/lava_backup.db.gz \
+             http://ala-git/cgit/lpd-ops/lava-wraxl.git/plain/lava/lava_backup.db.gz
+        ${DOCKER_CMD[*]} run -it --rm --volumes-from lava-server-data \
+                         -v /tmp/lava-server:/tmp --name lava-server-init \
+                         -h lava-server "${LAVA_IMAGE}" \
+                         /bin/lava_db_restore.sh &> /dev/null
+        rm -rf /tmp/lava-server
+        echo "Initial database restored. Use 'docker exec -it wraxlscheduler_lava-server_1 lava-server manage create_wraxl_worker --hostname $HOSTNAME' to create initial devices once lava server is started."
+    else
+        echo "lava-server-data container already exists."
+    fi
+    FILES=("${FILES[@]}" --file wraxl_lava.yml)
+    echo "Lava UI will be available at https://$HOSTIP:8443"
 fi
 
 echo "Mesos Master UI will be available at http://$HOSTIP:5050"
