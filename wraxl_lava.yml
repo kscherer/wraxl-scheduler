@@ -4,7 +4,7 @@ services:
     hostname: lava-server
     image: $REGISTRY:5000/lava:$LAVA_VERSION
     ports:
-      - "8443:443"
+      - "443:443"
       - "5555:5555"
       - "5556:5556"
     tmpfs:
