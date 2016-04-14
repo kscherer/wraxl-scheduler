@@ -83,4 +83,4 @@ test: ## Run tests
 	. $(VENV)/bin/activate; python setup.py test
 
 dev: ## Run scheduler locally without building pex file
-	python -m wraxl.scheduler --master $(MASTER):5050 --hostname yow-kscherer-d1 --redis $(MASTER) --config $$PWD/test/test_scheduler_config.yaml --config_dir ../wr-buildscripts/
+	. $(VENV)/bin/activate; python -m wraxl.scheduler --master $(MASTER):5050 --hostname yow-kscherer-d1 --redis $(MASTER) --config $$PWD/test/test_scheduler_config.yaml --config_dir ../wr-buildscripts/
