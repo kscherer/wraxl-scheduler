@@ -1,5 +1,5 @@
 scheduler:
   environment:
-    WRAXL_CONFIG: /mnt/test/test_scheduler_config.yaml
+    WRAXL_CONFIG: /mnt/test_scheduler_config.yaml
   volumes:
-    - $PWD:/mnt/
+    - $PWD/test/:/mnt/
