@@ -541,7 +541,7 @@ def start_scheduler(opts):
     httpserver_thread.daemon = True
 
     # Start Lava Queue Watcher
-    lava_queue_watcher = LavaQueueWatcher(scheduler, opts.config. opts.lava_server)
+    lava_queue_watcher = LavaQueueWatcher(scheduler, opts.config, opts.lava_server)
     scheduler.set_lava_watcher(lava_queue_watcher)
     lava_watcher_thread = Thread(name='lava-watcher', target=run_lava_watcher_async,
                                  args=(lava_queue_watcher,))
