@@ -88,7 +88,7 @@ class LavaRPC(object):
 
 
 class LavaQueueWatcher(object):
-    def __init__(self, scheduler, scheduler_config):
+    def __init__(self, scheduler, scheduler_config, lava_server):
         basedir = os.path.dirname(os.path.abspath(sys.argv[0]))
         self.config_file = os.path.join(basedir, scheduler_config)
         self.scheduler = scheduler
@@ -101,6 +101,7 @@ class LavaQueueWatcher(object):
         self.queue_prefix = None
         self.last_worker_query = datetime.min
         self.valid_workers = []
+        self.lava_server = lava_server
         self.load_config()
 
     def load_config(self):
@@ -127,7 +128,7 @@ class LavaQueueWatcher(object):
             self.lava_server_ip = socket.gethostbyname(self.config['lava'])
 
     def _setup_lava_rpc(self):
-        self.rpc_server.create_rpc_server(self.config.get('lava'),
+        self.rpc_server.create_rpc_server(self.lava_server,
                                           self.config.get('lava_user'),
                                           self.config.get('lava_token'))
 

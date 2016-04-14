@@ -14,7 +14,7 @@ The document assumes docker is setup locally using the setup described
 in the Readme. It also assumes that the hostname wr-docker-registry is
 in /etc/hosts and has the ip of the local docker registry.
 
-Install docker compose 1.5+. Follow the official instructions at
+Install docker compose 1.7+. Follow the official instructions at
 https://docs.docker.com/compose/install/
 
 The official docs say to install the binary into /usr/local/bin, but
@@ -48,6 +48,7 @@ symlink.
 Login as the wrlbuild user
 
     git clone ssh://ala-git/git/lpd-ops/wr-buildscripts.git
+    git clone ssh://ala-git/git/lpd-ops/wraxl-scheduler.git
 
 The wrlinux_build.sh script also assume that wrlinux-x developer trees
 are available in /home/wrlbuild. Each tree should have the branch as
@@ -58,29 +59,36 @@ part of the directory name, i.e. `wrlinux-WRLINUX_7_0_HEAD` for WRL7.
 After the initial setup, everything should be ready for
 docker-compose.
 
-    cd wr-buildscripts
-    sudo rm -rf /tmp/mesos/*
-    ./start_test_wraxl_cluster.sh --registry <registry> --file wraxl_scheduler.yaml
+    cd wraxl-scheduler
+    ./start_test_wraxl_cluster.sh --rm --registry <registry> \
+      --file wraxl_local_sched.yml
 
-This will download and start five docker containers and link them:
-zookeeper, mesos master, mesos slave, the scheduler and redis. To stop the
+This will download and start four docker containers and link them:
+mesos master, mesos slave, the scheduler and redis. To stop the
 containers, just press Ctrl-C.
 
 The web UI for the mesos master is available at:
 
     http://localhost:5050
 
-After the containers have stopped, the mesos log directory needs to be
-cleaned manually. It is best to run this before running docker-compose.
+## Running a local LAVA server
 
-    sudo rm -rf /tmp/mesos/*
+The start script supports initial LAVA database setup and running the
+lava server alongside the other wraxl components
 
-Docker compose will also automatically reuse exited containers. This
-may be useful if you want to restart a task on the queue, but most
-times starting the test cluster without existing state is better. Run
-the following to clear any exited containers.
+    cd wraxl-scheduler
+    ./start_test_wraxl_cluster.sh --rm --registry <registry> \
+      --file wraxl_local_sched.yml --with-lava
 
-    docker rm $(docker ps --filter status=exited -q)
+The only missing part is the initial devices which cannot be created
+until the lava-server starts. Once started run the following to create
+the initial devices:
+
+    docker exec -it wraxlscheduler_lava-server_1 lava-server manage \
+        create_wraxl_worker --hostname $HOSTNAME
+
+This will create the devices with a device hostname prefix that
+matches the mesos agent hostname.
 
 ## Running the Scheduler
 
@@ -107,46 +115,22 @@ The scheduler started by docker-compose has a default queue_prefix of
 
 To test changes to the scheduler run:
 
-    ./start_test_wraxl_cluster.sh --registry <registry> \
-        --file wraxl_scheduler.yaml --file wraxl_sched_test.yml
+    ./start_test_wraxl_cluster.sh --rm --registry <registry> \
+        --file wraxl_local_sched.yml --file wraxl_local_sched_override.yml
 
 which will link the local versions into the mesos_scheduler
 container. Docker compose 1.5+ supports multiple yml files to override
-parameters in previous yml files. The wraxl_sched_test.yml file adds
+parameters in previous yml files. The wraxl_local_sched.yml file adds
 volume mounts to use a local version of the scheduler for
 testing. More files could be added to add/change agent attributes or
 other configuration items.
-
-## Scheduler python dependencies
-
-The scheduler depends on several python libraries: redis, rq,
-protobuf, mesos.interface and mesos.native. The mesos.native library
-includes a compiled extension and is platform dependent. Mesosphere
-has made this library available here:
-
-    http://open.mesosphere.com/downloads/mesos/
-
-That python egg is installed using easy_install. Unfortunately the
-python egg conflicts with the standard pip flat installation format,
-so the mesos.interface library must be installed with:
-
-    pip install --egg mesos.interface
-
-These notes are integrated into the mesos-scheduler docker image. The
-Dockerfile for that image is here:
-
-    http://ala-git.wrs.com/cgi-bin/cgit.cgi/lpd-ops/docker-images.git/tree/mesos/Dockerfile-mesos-scheduler
-
-Note that with Mesos 0.24, a new HTTP API will be released which
-promises to make the mesos.native and mesos.interface packages
-obsolete.
 
 ## Running docker jobs
 
 Note that the `test_scheduler_config` does not pull docker images
 by default. If the docker image is not present on the local machine
 (check with `docker images`) then the job will fail. Check the
-/tmp/mesos/slave1/logs for more debugging information.
+/tmp/mesos/logs for more debugging information.
 
 Now that the scheduler is running, jobs can be enqueued and run.
 
@@ -251,9 +235,6 @@ agent.
     ./start_test_wraxl_cluster.sh --registry wr-docker-registry
 
 This will start the mesos master and redis database locally. To start
-the scheduler using the virtualenv.
+the scheduler locally using the virtualenv.
 
-    source ~/.local/bin/virtualenvwrapper.sh
-    workon wraxl_env
-    wraxl_scheduler --master zk://localhost:2181/mesos \
-      --redis localhost --config $PWD/test/test_scheduler_config.yaml
+    make dev

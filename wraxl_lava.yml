@@ -1,6 +1,7 @@
 version: '2'
 services:
   lava-server:
+    hostname: lava-server
     image: $REGISTRY:5000/lava:$LAVA_VERSION
     links:
       - "scheduler"
@@ -12,3 +13,6 @@ services:
       - /tmp
     volumes_from:
       - container:lava-server-data
+  scheduler:
+    environment:
+      WRAXL_LAVA_SERVER: lava-server:8443

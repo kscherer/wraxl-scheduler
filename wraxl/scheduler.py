@@ -497,7 +497,7 @@ def select_host(release, config):
     return random.choice(release['hosts'])
 
 
-def start_scheduler(master, config, hostname, redis, config_dir):
+def start_scheduler(opts):
     """Start Scheduler"""
 
     framework = mesos_pb2.FrameworkInfo()
@@ -505,7 +505,7 @@ def start_scheduler(master, config, hostname, redis, config_dir):
     # framework runs as wrlbuild, but executor must run as root because it calls docker
     framework.user = "root"
     framework.name = "Wraxl Scheduler"
-    framework.hostname = hostname
+    framework.hostname = opts.hostname
 
     log.info("Enabling checkpoint for the framework")
     framework.checkpoint = True
@@ -515,11 +515,11 @@ def start_scheduler(master, config, hostname, redis, config_dir):
     framework.id.value = "RandomBuilder"
     framework.failover_timeout = 900.0
 
-    scheduler = WraxlScheduler(config, config_dir, redis)
+    scheduler = WraxlScheduler(opts.config, opts.config_dir, opts.redis)
 
     implicitAcknowledgements = True
-    log.info("Searching for mesos master: %s", master)
-    driver = MesosSchedulerDriver(scheduler, framework, master,
+    log.info("Searching for mesos master: %s", opts.master)
+    driver = MesosSchedulerDriver(scheduler, framework, opts.master,
                                   implicitAcknowledgements)
 
     # need dict to allow inner function to assign to outer scope variable
@@ -541,7 +541,7 @@ def start_scheduler(master, config, hostname, redis, config_dir):
     httpserver_thread.daemon = True
 
     # Start Lava Queue Watcher
-    lava_queue_watcher = LavaQueueWatcher(scheduler, config)
+    lava_queue_watcher = LavaQueueWatcher(scheduler, opts.config. opts.lava_server)
     scheduler.set_lava_watcher(lava_queue_watcher)
     lava_watcher_thread = Thread(name='lava-watcher', target=run_lava_watcher_async,
                                  args=(lava_queue_watcher,))
@@ -618,6 +618,10 @@ def parse_args():
                     help='The directory that holds the randconfig and worldconfig'
                     'As referenced in the main wraxl config file.')
 
+    op.add_argument('--lava_server', dest='lava_server',
+                    default=os.environ.get('WRAXL_LAVA_SERVER', 'ala-lpd-lava'),
+                    help='The host and port of the lava server')
+
     opts = op.parse_args()
 
     if not opts.master:
@@ -631,7 +635,7 @@ def main():
     drop_privileges('wrlbuild', 'wrlbuild')
 
     opts = parse_args()
-    start_scheduler(opts.master, opts.config, opts.hostname, opts.redis, opts.config_dir)
+    start_scheduler(opts)
 
 if __name__ == "__main__":
     main()
