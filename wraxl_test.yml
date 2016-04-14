@@ -13,7 +13,7 @@ services:
       MESOS_QUORUM: 1
       MESOS_REGISTRY: in_memory
     volumes:
-      - /tmp/mesos:/tmp/mesos/
+      - /tmp/mesos/
 
   agent1:
     image: $REGISTRY:5000/mesos-agent:0.25.0
@@ -28,7 +28,7 @@ services:
       MESOS_CONTAINERIZERS: "docker,mesos"
       MESOS_EXECUTOR_REGISTRATION_TIMEOUT: "5mins"
       MESOS_PORT: "5051"
-      MESOS_LOG_DIR: /tmp/mesos/log/agent1
+      MESOS_LOG_DIR: /tmp/mesos/log/
       MESOS_LOGGING_LEVEL: WARNING
       MESOS_WORK_DIR: /tmp/mesos
       MESOS_RESOURCES: high:1
@@ -36,7 +36,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /sys/fs/cgroup:/sys/fs/cgroup
-      - /tmp/mesos:/tmp/mesos
+      - /tmp/mesos
 
   redis1:
     image: redis:2.8
