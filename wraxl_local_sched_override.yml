@@ -1,5 +1,7 @@
-scheduler:
-  environment:
-    WRAXL_CONFIG: /mnt/test_scheduler_config.yaml
-  volumes:
-    - $PWD/test/:/mnt/
+version: '2'
+services:
+  scheduler:
+    environment:
+      WRAXL_CONFIG: /mnt/test_scheduler_config.yaml
+    volumes:
+      - $PWD/test/:/mnt/

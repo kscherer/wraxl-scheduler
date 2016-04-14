@@ -20,7 +20,6 @@ echo 'Successfully ran docker info'
 
 command -v docker-compose >/dev/null 2>&1 || { echo >&2 "I require docker-compose but it's not installed. https://docs.docker.com/compose/install/  Aborting."; exit 1; }
 
-
 # taken from http://stackoverflow.com/questions/4023830/bash-how-compare-two-strings-in-version-format
 function vercomp {
     if [[ "$1" == "$2" ]]; then
@@ -52,24 +51,32 @@ function vercomp {
     return 0
 }
 
-# require docker-compose version >= 1.5.0
+# require docker-compose version >= 1.7.0
 DCOMPOSE_VERSION=$(docker-compose --version | cut -d' ' -f 3)
-vercomp '1.4.2' "$DCOMPOSE_VERSION"
+vercomp '1.6.2' "$DCOMPOSE_VERSION"
 if [ $? != '2' ]; then
-    echo >&2 "Require docker-compose version 1.5.0 or later. Aborting"
+    echo >&2 "Require docker-compose version 1.7.0 or later. Aborting"
     exit 1
 fi
 
 echo "Docker Compose is present and is version $DCOMPOSE_VERSION"
+
+usage() {
+    echo >&2 "Usage $0 [--registry=(ala|yow|pek)-lpdfs01] [--file <compose yaml>]"
+    echo >&2 "  The script will attempt to locate closest registry if not provided."
+    echo >&2 "  If registry is not specified, the script will attempt to locate closest registry."
+    exit 1
+}
 
 export REGISTRY=
 FILES=(--file wraxl_test.yml)
 
 while [ "$#" -gt 0 ]; do
     case "$1" in
-        --registry=*) REGISTRY="${1#*=}"; shift 1 ;;
+        --registry=*) REGISTRY="${1#*=}"; shift 1;;
         --registry)   REGISTRY="$2"; shift 2;;
-        --file)       FILES=("${FILES[@]}" --file $2);shift 2;;
+        --file)       FILES=("${FILES[@]}" --file $2); shift 2;;
+        *)            usage ;;
     esac
 done
 
@@ -87,7 +94,7 @@ if [ -z "$REGISTRY" ]; then
     external_ip=$(dig +short @resolver1.opendns.com myip.opendns.com)
 
     #only look at first 2 parts of ip address
-    classB_subnet=$(echo ${external_ip} | cut -d. -f1-2)
+    classB_subnet=$(echo "${external_ip}" | cut -d. -f1-2)
     if [ "x$classB_subnet" == "x128.224" ]; then
         REGISTRY=yow-lpdfs01
     elif [ "x$classB_subnet" == "x147.11" ]; then

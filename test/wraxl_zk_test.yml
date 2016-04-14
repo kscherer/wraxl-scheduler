@@ -1,0 +1,29 @@
+version: '2'
+services:
+  # Zookeeper
+  zk1:
+    image: jplock/zookeeper:3.4.6
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"
+  
+  #
+  # Mesos master
+  #
+  # http://mesos.apache.org/documentation/latest/configuration/
+  #
+  mesos1:
+    environment:
+      MESOS_ADVERTISE_IP: $HOSTIP
+      MESOS_ZK: zk://zk1:2181/mesos
+    links:
+      - "zk1"
+  
+  
+  agent1:
+    environment:
+      MESOS_MASTER: zk://zk1:2181/mesos
+    links:
+      - "zk1"
+

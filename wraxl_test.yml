@@ -1,47 +1,44 @@
-#
-# Mesos master
-#
-# http://mesos.apache.org/documentation/latest/configuration/
-#
-mesos1:
-  image: $REGISTRY:5000/mesos-master:0.25.0
-  ports:
-    - "5050:5050"
-  environment:
-    MESOS_ADVERTISE_IP: $HOSTIP
-    MESOS_WORK_DIR: /tmp/mesos
-    MESOS_LOG_DIR: /tmp/mesos/log
-    MESOS_LOGGING_LEVEL: INFO
-    MESOS_CLUSTER: wraxl
-    MESOS_QUORUM: 1
-    MESOS_REGISTRY: in_memory
-  volumes:
-    - /tmp/mesos:/tmp/mesos/
+version: '2'
+services:
+  mesos1:
+    image: $REGISTRY:5000/mesos-master:0.25.0
+    ports:
+      - "5050:5050"
+    environment:
+      MESOS_ADVERTISE_IP: $HOSTIP
+      MESOS_WORK_DIR: /tmp/mesos
+      MESOS_LOG_DIR: /tmp/mesos/log
+      MESOS_LOGGING_LEVEL: INFO
+      MESOS_CLUSTER: wraxl
+      MESOS_QUORUM: 1
+      MESOS_REGISTRY: in_memory
+    volumes:
+      - /tmp/mesos:/tmp/mesos/
 
-agent1:
-  image: $REGISTRY:5000/mesos-agent:0.25.0
-  ports:
-    - "5051:5051"
-  links:
-    - "mesos1"
-  environment:
-    MESOS_MASTER: $HOSTIP:5050
-    MESOS_HOSTNAME: $HOST
-    MESOS_ISOLATOR: "cgroups/cpu,cgroups/mem"
-    MESOS_CONTAINERIZERS: "docker,mesos"
-    MESOS_EXECUTOR_REGISTRATION_TIMEOUT: "5mins"
-    MESOS_PORT: "5051"
-    MESOS_LOG_DIR: /tmp/mesos/log/agent1
-    MESOS_LOGGING_LEVEL: WARNING
-    MESOS_WORK_DIR: /tmp/mesos
-    MESOS_RESOURCES: high:1
-    # MESOS_ATTRIBUTES: location:ala
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - /sys/fs/cgroup:/sys/fs/cgroup
-    - /tmp/mesos:/tmp/mesos
+  agent1:
+    image: $REGISTRY:5000/mesos-agent:0.25.0
+    ports:
+      - "5051:5051"
+    links:
+      - "mesos1"
+    environment:
+      MESOS_MASTER: $HOSTIP:5050
+      MESOS_HOSTNAME: $HOST
+      MESOS_ISOLATOR: "cgroups/cpu,cgroups/mem"
+      MESOS_CONTAINERIZERS: "docker,mesos"
+      MESOS_EXECUTOR_REGISTRATION_TIMEOUT: "5mins"
+      MESOS_PORT: "5051"
+      MESOS_LOG_DIR: /tmp/mesos/log/agent1
+      MESOS_LOGGING_LEVEL: WARNING
+      MESOS_WORK_DIR: /tmp/mesos
+      MESOS_RESOURCES: high:1
+      # MESOS_ATTRIBUTES: location:ala
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /sys/fs/cgroup:/sys/fs/cgroup
+      - /tmp/mesos:/tmp/mesos
 
-redis1:
-  image: redis:2.8
-  ports:
-    - "6379:6379" 
+  redis1:
+    image: redis:2.8
+    ports:
+      - "6379:6379"

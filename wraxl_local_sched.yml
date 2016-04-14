@@ -1,9 +1,11 @@
-# Add this file to start the scheduler image
-scheduler:
-  image: $REGISTRY:5000/mesos-scheduler:0.25.0
-  links:
-    - "mesos1"
-    - "redis1"
-  environment:
-    MESOS_MASTER: $HOSTIP:5050
-    WRAXL_REDIS: $HOSTIP
+version: '2'
+services:
+  # Add this file to start the scheduler image
+  scheduler:
+    image: $REGISTRY:5000/mesos-scheduler:0.25.0
+    links:
+      - "mesos1"
+      - "redis1"
+    environment:
+      MESOS_MASTER: $HOSTIP:5050
+      WRAXL_REDIS: $HOSTIP
