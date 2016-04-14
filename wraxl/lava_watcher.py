@@ -24,12 +24,12 @@ log = logging.getLogger('lava_watcher')
 logging.getLogger("requests").setLevel(logging.WARNING)
 
 
-def validate_server(rpc_server, user):
+def validate_server(rpc_server, user, url):
     try:
         whoami = rpc_server.system.whoami()
     except (socket.error, xmlrpclib.Fault, xmlrpclib.ProtocolError,
             xmlrpclib.ResponseError):
-        log.warning("Unable to authenticate to Lava as %s", user)
+        log.warning("Unable to connect to %s", url)
         return False
 
     if user != whoami:
@@ -52,15 +52,17 @@ class LavaRPC(object):
             self.lava_host = lava_host
             self.token = token
             self.last_connect_attempt = datetime.utcnow()
+            lava_url = "https://%s:%s@%s/RPC2" % (user, token, lava_host)
+
+            # python 2.7.10+ requires special case to disable verification
             if hasattr(ssl, '_create_unverified_context'):
-                new_rpc_server = xmlrpclib.ServerProxy(
-                    "https://%s:%s@%s/RPC2" % (user, token, lava_host),
+                new_rpc_server = xmlrpclib.ServerProxy(lava_url,
                     context=ssl._create_unverified_context())
             else:
-                new_rpc_server = xmlrpclib.ServerProxy(
-                    "https://%s:%s@%s/RPC2" % (user, token, lava_host))
+                new_rpc_server = xmlrpclib.ServerProxy(lava_url)
 
-            if validate_server(new_rpc_server, user):
+            lava_tokenless_url = "https://%s@%s/RPC2" % (user, lava_host)
+            if validate_server(new_rpc_server, user, lava_tokenless_url):
                 self.rpc_server = new_rpc_server
             else:
                 self.rpc_server = None
