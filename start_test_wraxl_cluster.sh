@@ -69,6 +69,14 @@ done
 
 command -v docker >/dev/null 2>&1 || { echo >&2 "I require docker but it's not installed. https://docs.docker.com/install/  Aborting."; exit 1; }
 
+# require docker version >= 1.9.1
+DOCKER_VERSION=$(docker --version | cut -d' ' -f 3)
+vercomp '1.9.1' "$DOCKER_VERSION"
+if [ $? != '2' ]; then
+    echo >&2 "Require docker version 1.9.1 or later. Aborting"
+    exit 1
+fi
+
 DOCKER_CMD="docker"
 if groups | grep -vq docker; then
     echo "This user is not in the docker group. Will attempt to run docker info using sudo."
