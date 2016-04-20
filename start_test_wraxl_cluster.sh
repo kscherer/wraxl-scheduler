@@ -164,7 +164,7 @@ if [ "$WITH_LAVA" == '1' ]; then
     else
         echo "lava-server-data container already exists."
     fi
-    FILES=("${FILES[@]}" --file wraxl_lava.yml)
+    FILES=("${FILES[@]}" --file wraxl_local_sched.yml --file wraxl_lava.yml)
     echo "Lava UI will be available at https://$HOSTIP:8443"
 fi
 
