@@ -69,7 +69,7 @@ system: ## Convenience target for installing system libraries on Ubuntu/Debian
 	touch .check
 
 $(PIP):
-	wget -o /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py; \
+	wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py; \
 	python /tmp/get-pip.py --user; \
 	rm -f /tmp/get-pip.py
 
