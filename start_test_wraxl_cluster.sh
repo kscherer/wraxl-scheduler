@@ -127,15 +127,22 @@ else
     echo "Using registry $REGISTRY."
 fi
 
+get_primary_ip_address() {
+    # show which device internet connection would use and extract ip of that device
+    ip=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+    echo "$ip"
+}
+
 export HOST="$HOSTNAME"
-export HOSTIP=$(hostname --ip-address)
 
 # require a $HOSTNAME with a proper DNS entry
 host "$HOSTNAME" > /dev/null 2>&1
 if [ $? != 0 ]; then
     echo "The hostname for this system is not in DNS. Attempting ip address fallback"
-    export HOST=$(hostname --ip-address)
+    export HOST=$(get_primary_ip_address)
 fi
+
+export HOSTIP=$(get_primary_ip_address)
 
 if [ "$WITH_LAVA" == '1' ]; then
     LAVA_IMAGE="${REGISTRY}:5000/lava:${LAVA_VERSION}"
