@@ -12,8 +12,8 @@ services:
       MESOS_CLUSTER: wraxl
       MESOS_QUORUM: 1
       MESOS_REGISTRY: in_memory
-    volumes:
-      - /tmp/mesos/
+    tmpfs:
+      - /tmp
 
   agent1:
     image: $REGISTRY:5000/mesos-agent:0.25.0
@@ -33,10 +33,11 @@ services:
       MESOS_WORK_DIR: /tmp/mesos
       MESOS_RESOURCES: high:1
       # MESOS_ATTRIBUTES: location:ala
+    tmpfs:
+      - /tmp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /sys/fs/cgroup:/sys/fs/cgroup
-      - /tmp/mesos
 
   redis1:
     image: redis:2.8
