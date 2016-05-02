@@ -34,6 +34,8 @@ def validate_server(rpc_server, user, url):
 
     if user != whoami:
         return False
+
+    log.info("Valid connection to LAVA server at %s", url)
     return True
 
 
@@ -69,41 +71,35 @@ class LavaRPC(object):
 
     def rpc_call(self, func, default=None):
         """Attempt an xml rpc call to LAVA server """
-
-        # Attempt connection if currently not connected
-        if self.rpc_server is None and \
-           datetime.utcnow() - self.last_connect_attempt > timedelta(seconds=5):
-            self.create_rpc_server(self.lava_host, self.user, self.token)
-
-        # If valid connection could not be created, return the default value
+        # If there isn't a valid connection, return the default value
         if self.rpc_server is None:
             return default
 
         # If existing xmlrpc connection drops, exceptions get raised
         try:
-            return func()
+            return eval("self.rpc_server." + func)()
         except Exception as exc:
             log.warning('Connection to LAVA server failed. Will attempt to reconnect.', exc_info=True)
             self.rpc_server = None
             return default
 
     def all_jobs(self):
-        return self.rpc_call(self.rpc_server.scheduler.all_jobs, [])
+        return self.rpc_call("scheduler.all_jobs", [])
 
     def all_devices(self):
-        return self.rpc_call(self.rpc_server.scheduler.all_devices, [])
+        return self.rpc_call("scheduler.all_devices", [])
 
     def get_lava_version(self):
-        return self.rpc_call(self.rpc_server.dashboard.version, '').split('-')[0]
+        return self.rpc_call("dashboard.version", '').split('-')[0]
 
     def is_valid(self):
-        return self.rpc_call(self.rpc_server.system.whoami) == self.user
+        return self.rpc_call("system.whoami") == self.user
 
 
 class LavaQueueWatcher(object):
     def __init__(self, scheduler, opts):
         basedir = os.path.dirname(os.path.abspath(sys.argv[0]))
-        self.config_file = os.path.join(basedir, opts.scheduler_config)
+        self.config_file = os.path.join(basedir, opts.config)
         self.scheduler = scheduler
         self.shutting_down = False
         self.rpc_server = LavaRPC()
@@ -134,12 +130,15 @@ class LavaQueueWatcher(object):
                 log.info('Set Log Level to %s', self.config['log_level'])
                 log.setLevel(self.config['log_level'])
 
-            self._setup_lava_rpc()
-
             self.queue_prefix = self.config['queue_prefix']
             self.queue = Queue(self.queue_prefix + '_high',
                                connection=self.redis_conn)
+            self.lava_server = self.config.get('lava', self.opts.lava_server)
             self.lava_server_ip = socket.gethostbyname(self.config['lava'])
+
+        # will attempt to create lava server connection. Since load_config is
+        # called by check_lava_queue, this will keep retrying
+        self._setup_lava_rpc()
 
     def _setup_lava_rpc(self):
         self.rpc_server.create_rpc_server(self.lava_server,
@@ -168,7 +167,7 @@ def check_lava_queue(watcher):
     # First reload config file if necessary
     watcher.load_config()
 
-    if not watcher.rpc_server.is_valid():
+    if watcher.rpc_server is None or not watcher.rpc_server.is_valid():
         return
 
     num_pending_qemu_jobs, num_running_qemu_jobs = num_qemu_jobs(watcher.rpc_server)
