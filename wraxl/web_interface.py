@@ -1,7 +1,13 @@
 """Provides web and REST interface to scheduler"""
+import logging
+
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.response import Response
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(levelname)s %(message)s')
+log = logging.getLogger('wraxl_web')
 
 
 def root(request):
@@ -29,4 +35,7 @@ class WraxlHttpServer:
 
 def run_httpserver(wraxl_httpserver):
     """Run the http server on a different thread"""
-    wraxl_httpserver.serve_forever()
+    try:
+        wraxl_httpserver.serve_forever()
+    except Exception as exc:
+        log.warning("Web Interface exception caught!", exc_info=True)
