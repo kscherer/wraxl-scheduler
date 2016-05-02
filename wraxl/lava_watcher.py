@@ -90,7 +90,14 @@ class LavaRPC(object):
         return self.rpc_call("scheduler.all_devices", [])
 
     def get_lava_version(self):
-        return self.rpc_call("dashboard.version", '').split('-')[0]
+        package_version = self.rpc_call("dashboard.version", '')
+        year = package_version[0:5]  # Year and dot: 2016.
+        month = package_version[5]
+        if month == '1':
+            char = package_version[6]
+            if char == '0' or char == '1' or char == '2':
+                month = package_version[5:6]
+        return year + month
 
     def is_valid(self):
         return self.rpc_call("system.whoami") == self.user
