@@ -8,7 +8,7 @@ services:
       MESOS_ADVERTISE_IP: $HOSTIP
       MESOS_WORK_DIR: /tmp/mesos
       MESOS_LOG_DIR: /tmp/mesos/log
-      MESOS_LOGGING_LEVEL: INFO
+      MESOS_LOGGING_LEVEL: WARNING
       MESOS_CLUSTER: wraxl
       MESOS_QUORUM: 1
       MESOS_REGISTRY: in_memory

@@ -51,7 +51,8 @@ EOF
 
 CLEANUP=0
 WITH_LAVA=0
-export LAVA_VERSION=2016.3
+DEV_MODE=0
+export LAVA_VERSION=2016.4
 export REGISTRY=
 declare -a FILES=
 
@@ -62,6 +63,7 @@ while [ "$#" -gt 0 ]; do
         --file)           FILES=("${FILES[@]}" --file $2); shift 2;;
         --rm)             CLEANUP=1; shift 1;;
         --with-lava)      WITH_LAVA=1; shift 1;;
+        --dev)            DEV_MODE=1; shift 1;;
         --lava-version=*) LAVA_VERSION="${1#*=}"; shift 1;;
         *)            usage ;;
     esac
@@ -178,11 +180,15 @@ if [ "$WITH_LAVA" == '1' ]; then
     else
         echo "lava-server-data container already exists."
     fi
-    FILES=(--file wraxl_local_sched.yml --file wraxl_lava.yml "${FILES[@]}")
+    FILES=(--file wraxl_lava.yml "${FILES[@]}")
     echo "Lava UI will be available at https://$HOSTIP"
 fi
 
-FILES=(--file wraxl_test.yml "${FILES[@]}")
+if [ "$DEV_MODE" == '0' ]; then
+    FILES=(--file wraxl_test.yml --file wraxl_local_sched.yml "${FILES[@]}")
+else
+    FILES=(--file wraxl_test.yml "${FILES[@]}")
+fi
 
 echo "Mesos Master UI will be available at http://$HOSTIP:5050"
 echo Starting wraxl with: docker-compose ${FILES[*]} up

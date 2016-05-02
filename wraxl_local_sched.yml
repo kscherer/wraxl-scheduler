@@ -9,3 +9,7 @@ services:
     environment:
       MESOS_MASTER: $HOSTIP:5050
       WRAXL_REDIS: $HOSTIP
+      WRAXL_LAVA_SERVER: lava-server
+      WRAXL_CONFIG: /mnt/test_scheduler_config.yaml
+    volumes:
+      - $PWD/test/:/mnt/

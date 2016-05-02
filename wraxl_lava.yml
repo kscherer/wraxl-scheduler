@@ -11,8 +11,3 @@ services:
       - /tmp
     volumes_from:
       - container:lava-server-data
-  scheduler:
-    links:
-      - "lava-server"
-    environment:
-      WRAXL_LAVA_SERVER: lava-server
