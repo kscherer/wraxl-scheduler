@@ -129,7 +129,7 @@ fi
 
 get_primary_ip_address() {
     # show which device internet connection would use and extract ip of that device
-    ip=$(ip route get 8.8.8.8 | awk 'NR==1 {print $NF}')
+    ip=$(ip -4 route get 8.8.8.8 | awk 'NR==1 {print $NF}')
     echo "$ip"
 }
 
@@ -174,13 +174,12 @@ if [ "$WITH_LAVA" == '1' ]; then
                          -v /tmp/lava-server:/tmp --name lava-server-init \
                          -h lava-server "${LAVA_IMAGE}" \
                          /bin/lava_db_restore.sh &> /dev/null
-        rm -rf /tmp/lava-server
         echo "Initial database restored. Use 'docker exec -it wraxlscheduler_lava-server_1 lava-server manage create_wraxl_worker --hostname $HOSTNAME' to create initial devices once lava server is started."
     else
         echo "lava-server-data container already exists."
     fi
     FILES=(--file wraxl_local_sched.yml --file wraxl_lava.yml "${FILES[@]}")
-    echo "Lava UI will be available at https://$HOSTIP:8443"
+    echo "Lava UI will be available at https://$HOSTIP"
 fi
 
 FILES=(--file wraxl_test.yml "${FILES[@]}")
