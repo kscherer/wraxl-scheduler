@@ -1,6 +1,6 @@
 ---
 registry: wr-docker-registry:5000/
-redis: redis1
+redis: redis
 queue_prefix: wraxl
 lava: yow-kscherer-d2
 lava_user: admin

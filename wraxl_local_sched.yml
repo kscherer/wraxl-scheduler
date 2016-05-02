@@ -4,8 +4,8 @@ services:
   scheduler:
     image: $REGISTRY:5000/mesos-scheduler:0.25.0
     links:
-      - "mesos1"
-      - "redis1"
+      - "master"
+      - "redis"
     environment:
       MESOS_MASTER: $HOSTIP:5050
       WRAXL_REDIS: $HOSTIP
