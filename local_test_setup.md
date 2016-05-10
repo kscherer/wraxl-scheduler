@@ -47,8 +47,8 @@ symlink.
 
 Login as the wrlbuild user
 
-    git clone ssh://ala-git/git/lpd-ops/wr-buildscripts.git
-    git clone ssh://ala-git/git/lpd-ops/wraxl-scheduler.git
+    git clone git://ala-git/git/lpd-ops/wr-buildscripts.git
+    git clone git://ala-git/git/lpd-ops/wraxl-scheduler.git
 
 The wrlinux_build.sh script also assume that wrlinux-x developer trees
 are available in /home/wrlbuild. Each tree should have the branch as
@@ -64,7 +64,7 @@ docker-compose.
       --file wraxl_local_sched.yml
 
 This will download and start four docker containers and link them:
-mesos master, mesos slave, the scheduler and redis. To stop the
+mesos master, mesos agent, the scheduler and redis. To stop the
 containers, just press Ctrl-C.
 
 The web UI for the mesos master is available at:
@@ -115,15 +115,13 @@ The scheduler started by docker-compose has a default queue_prefix of
 
 To test changes to the scheduler run:
 
-    ./start_test_wraxl_cluster.sh --rm --registry <registry> \
-        --file wraxl_local_sched.yml --file wraxl_local_sched_override.yml
+    make dev MASTER=<master>
 
-which will link the local versions into the mesos_scheduler
-container. Docker compose 1.5+ supports multiple yml files to override
-parameters in previous yml files. The wraxl_local_sched.yml file adds
-volume mounts to use a local version of the scheduler for
-testing. More files could be added to add/change agent attributes or
-other configuration items.
+where <master> is the name or ip of the server running the mesos
+master. This allows a local scheduler to connect to a remote mesos
+master.  The scheduler will run locally with the correct virtualenv
+and a test configuration that assumes wr-buildscripts is located at
+../wr-buildscripts.
 
 ## Running docker jobs
 
@@ -232,9 +230,9 @@ allowing them to be edited without requiring any build steps.
 The scheduler requires other infrastructure like a mesos master and
 agent.
 
-    ./start_test_wraxl_cluster.sh --registry wr-docker-registry
+    ./start_test_wraxl_cluster.sh --registry wr-docker-registry --dev
 
 This will start the mesos master and redis database locally. To start
 the scheduler locally using the virtualenv.
 
-    make dev
+    make dev MASTER=<master>
