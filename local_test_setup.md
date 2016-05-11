@@ -146,9 +146,9 @@ Here is an example minimal python script to enqueue a custom job:
            # optional: production wraxl supports yow, ala, pek
            #'location': 'yow',
            # optional: add env variables
-           #'environment': ['ENV1', 'foo'],
-           # optional: add volume mount
-           #'volumes': ['/usr/bin/docker', '/usr/bin/docker', 2],
+           #'environment': [('ENV1', 'foo'), ('ENV2', 'bar')],
+           # optional: add volume mount. 1=RW, 2=RO)
+           #'volumes': [('/var/run/docker.sock', '/var/run/docker.sock', 1)],
            # command must be an array, script must be in /home/wrlbuild
            'cmd': ['/home/wrlbuild/wr-buildscripts/myscript.sh',
                    '--arg1=arg1', '--arg2=arg2']}
