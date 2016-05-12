@@ -90,7 +90,7 @@ the initial devices:
 This will create the devices with a device hostname prefix that
 matches the mesos agent hostname.
 
-## Running the Scheduler
+## Scheduler Design
 
 The current random coverage scheduler has several design limitations:
 
@@ -113,15 +113,13 @@ The scheduler started by docker-compose has a default queue_prefix of
 `wraxl`, so the queues are `wraxl_high`, `wraxl_low` and
 `wraxl_world`.
 
-To test changes to the scheduler run:
+By default the jobs with high and low priority require 15GB of RAM on
+an agent. This does not mean the job requires that much memory and to
+run wraxl jobs on a machine with less memory the amount of memory
+reported by the agent can be spoofed. Edit wraxl_test.yml and change
+the available mem resource to 20GB as follows:
 
-    make dev MASTER=<master>
-
-where <master> is the name or ip of the server running the mesos
-master. This allows a local scheduler to connect to a remote mesos
-master.  The scheduler will run locally with the correct virtualenv
-and a test configuration that assumes wr-buildscripts is located at
-../wr-buildscripts.
+    MESOS_RESOURCES: high:1;mem:20480
 
 ## Running docker jobs
 
@@ -144,6 +142,7 @@ Here is an example minimal python script to enqueue a custom job:
     job = {'name': "my test job",
            'docker_image': 'ubuntu1404_64',
            # optional: production wraxl supports yow, ala, pek
+           # Note: do not specify location when using docker-compose
            #'location': 'yow',
            # optional: add env variables
            #'environment': [('ENV1', 'foo'), ('ENV2', 'bar')],
@@ -158,6 +157,10 @@ Here is an example minimal python script to enqueue a custom job:
 
 Also see the example script `test/test_enqueue.py` and
 `ovp_lava_enqueue.py` for more examples.
+
+When using the local test setup, the agent does not have a location by
+default and if location is specified in the job definition, the job
+will never be executed.
 
 ## Working with the devbuild components
 
@@ -206,6 +209,26 @@ management of dependencies can be a pain. Scheduler development uses
 virtualenv and setuptools to isolate the development area and required
 packages from the host system.
 
+To test changes to the scheduler run:
+
+    make dev MASTER=<master>
+
+where <master> is the name or ip of the server running the mesos
+master. This allows a local scheduler to connect to a remote mesos
+master.  The scheduler will run locally with the correct virtualenv
+and a test configuration that assumes wr-buildscripts is located at
+../wr-buildscripts.
+
+The scheduler requires other infrastructure like a mesos master and
+agent.
+
+    ./start_test_wraxl_cluster.sh --registry wr-docker-registry --dev
+
+This will start the mesos master and redis database locally. To start
+the scheduler locally using the virtualenv.
+
+    make dev MASTER=<master>
+
 ### Python Dev Environment prerequisites
 
 I prefer not to use the system pip and virtualenv.
@@ -226,13 +249,3 @@ The virtualenv setup has been added to the Makefile:
 The setup step creates a virtualenv in "develop" mode where the python
 path contains a link to the python files in the wraxl directory
 allowing them to be edited without requiring any build steps.
-
-The scheduler requires other infrastructure like a mesos master and
-agent.
-
-    ./start_test_wraxl_cluster.sh --registry wr-docker-registry --dev
-
-This will start the mesos master and redis database locally. To start
-the scheduler locally using the virtualenv.
-
-    make dev MASTER=<master>
