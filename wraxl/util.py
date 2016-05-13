@@ -17,7 +17,6 @@ DOCKER_RUN_PRIVILEGED = '--privileged'
 
 # Default volumes for all builds done in docker containers
 DOCKER_VOLUMES = [("/home/wrlbuild", "/home/wrlbuild", mesos_pb2.Volume.RW),
-                  ("/mnt/docker", "/tmp", mesos_pb2.Volume.RW),
                   ("/etc/localtime", "/etc/localtime", mesos_pb2.Volume.RO),
                   ("/sys/fs/cgroup", "/sys/fs/cgroup", mesos_pb2.Volume.RO)]
 

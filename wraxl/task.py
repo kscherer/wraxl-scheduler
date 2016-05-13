@@ -46,8 +46,10 @@ class Task():
         self.taskinfo.container.docker.force_pull_image = False
         if offer:
             self.taskinfo.set_slave(offer)
+        # add default environment, bind mounts and tmpfs
         self.add_env([('MESOS_TASK_ID', task_id)])
         self.add_volumes(DOCKER_VOLUMES)
+        self.add_parameters([('tmpfs', '/tmp:rw,noexec,nosuid,size=256M')])
 
     def id(self):
         return self.taskinfo.task_id.value
@@ -102,6 +104,12 @@ class Task():
             volume.host_path = host_path
             volume.container_path = container_path
             volume.mode = mode
+
+    def add_parameters(self, params):
+        for key, value in params:
+            param = self.taskinfo.container.docker.parameters.add()
+            param.key = key
+            param.value = value
 
     def add_labels(self, labels):
         for key, value in labels:

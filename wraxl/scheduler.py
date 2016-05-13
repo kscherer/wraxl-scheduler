@@ -427,6 +427,7 @@ class WraxlScheduler(Scheduler):
         task.set_options(args.get('options', []))
         task.add_env(args.get('environment', []))
         task.add_volumes(args.get('volumes', []))
+        task.add_parameters(args.get('parameters', []))
         task.add_labels(args.get('labels', []))
         task.set_hostname(args.get('hostname', offer.hostname))
 
