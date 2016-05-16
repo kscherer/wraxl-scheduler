@@ -159,7 +159,7 @@ class LavaQueueWatcher(object):
         return self.scheduler.master_address
 
     def is_valid_worker(self, worker_hostname):
-        return worker_hostname in self._get_valid_workers()
+        return worker_hostname.split('.')[0] in self._get_valid_workers()
 
     def _get_valid_workers(self):
         if datetime.utcnow() - self.last_worker_query > timedelta(seconds=60):
