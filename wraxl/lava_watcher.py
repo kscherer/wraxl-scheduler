@@ -304,7 +304,6 @@ def launch_qemu_worker(queue, device_type, lava_server_ip, lava_watcher_tag):
     job['environment'] = [('LAVA_SERVER_IP', lava_server_ip),
                           ('LAVA_DEVICE_TYPE', device_type),
                           ('LAVA_WORKER_IDLE_CHECK', 'yes')]
-    job['volumes'] = [("/mnt/docker", "/tmp", mesos_pb2.Volume.RW)]
     job['labels'] = [('type', 'lava'), ('device_type', device_type)]
 
     try:
