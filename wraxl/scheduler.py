@@ -233,6 +233,7 @@ class WraxlScheduler(Scheduler):
                not self.lava_watcher.is_valid_worker(offer.hostname):
                 log.debug('Skipping offer from %s because it is not a valid lava worker.',
                           offer.hostname)
+                continue
 
             temp_queue_name = '_'.join([self.config['queue_prefix'],
                                         priority, image_no_tag,
