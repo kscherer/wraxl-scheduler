@@ -83,4 +83,6 @@ test: ## Run tests
 	. $(VENV)/bin/activate; python setup.py test
 
 dev: ## Run scheduler locally without building pex file
-	. $(VENV)/bin/activate; python -m wraxl.scheduler --master $(MASTER):5050 --hostname $(shell hostname) --redis $(MASTER) --config $$PWD/test/test_scheduler_config.yaml --config_dir ../wr-buildscripts/
+	. $(VENV)/bin/activate; LIBPROCESS_IP=$(HOST_IP) python -m wraxl.scheduler \
+		--master $(MASTER):5050 --hostname $(shell hostname) --redis $(MASTER) \
+        --config $$PWD/test/test_scheduler_config.yaml --config_dir ../wr-buildscripts/
