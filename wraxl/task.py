@@ -80,8 +80,10 @@ class Task():
         self.taskinfo.command.arguments.extend(full_cmd[1:])
 
     def set_hostname(self, hostname):
-        self.taskinfo.container.hostname = hostname
-        self.add_env([('HOSTNAME', hostname)])
+        # remove domain from the hostname because containers do not have a domain
+        short_hostname = hostname.split('.')[0]
+        self.taskinfo.container.hostname = short_hostname
+        self.add_env([('HOSTNAME', short_hostname)])
 
     def set_options(self, options):
         if DOCKER_NO_NETWORK in options:
