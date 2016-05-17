@@ -430,6 +430,7 @@ class WraxlScheduler(Scheduler):
         task.add_volumes(args.get('volumes', []))
         task.add_parameters(args.get('parameters', []))
         task.add_labels(args.get('labels', []))
+        task.add_port_mappings(args.get('port_mappings', []))
         task.set_hostname(args.get('hostname', offer.hostname))
 
         return task

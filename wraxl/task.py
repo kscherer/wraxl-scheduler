@@ -1,10 +1,15 @@
 """Wrappers for task info and status"""
 
 import uuid
+import logging
 
 from mesos.interface import mesos_pb2
 from .util import (split_escape_quotes, DOCKER_NO_NETWORK, DOCKER_VOLUMES,
                    DOCKER_RUN_PRIVILEGED)
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(levelname)s %(message)s')
+log = logging.getLogger('task')
 
 
 def get_task_id():
@@ -19,6 +24,16 @@ def add_resource(task, name, value):
         resource.name = name
         resource.type = mesos_pb2.Value.SCALAR
         resource.scalar.value = value
+
+
+def add_range_resource(task, name, begin, end):
+    """Generic resource add function"""
+    resource = task.resources.add()
+    resource.name = name
+    resource.type = mesos_pb2.Value.RANGES
+    resource_range = resource.ranges.range.add()
+    resource_range.begin = begin
+    resource_range.end = end
 
 
 def add_resources(task, taskspec):
@@ -118,3 +133,11 @@ class Task():
             label = self.taskinfo.labels.labels.add()
             label.key = key
             label.value = value
+
+    def add_port_mappings(self, port_mappings):
+        for host_port, container_port, protocol in port_mappings:
+            port_mapping = self.taskinfo.container.docker.port_mappings.add()
+            port_mapping.host_port = host_port
+            port_mapping.container_port = container_port
+            port_mapping.protocol = protocol
+            add_range_resource(self.taskinfo, "ports", host_port, host_port)
