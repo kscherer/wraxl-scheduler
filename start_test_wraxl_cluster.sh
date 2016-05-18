@@ -52,6 +52,7 @@ EOF
 CLEANUP=0
 WITH_LAVA=0
 DEV_MODE=0
+export LOG_LEVEL=WARNING
 export LAVA_VERSION=2016.4
 export REGISTRY=
 declare -a FILES=
@@ -61,6 +62,7 @@ while [ "$#" -gt 0 ]; do
         --registry=*)     REGISTRY="${1#*=}"; shift 1;;
         --registry)       REGISTRY="$2"; shift 2;;
         --file)           FILES=("${FILES[@]}" --file $2); shift 2;;
+        --log=*)          LOG_LEVEL="${1#*=}"; shift 1;;
         --rm)             CLEANUP=1; shift 1;;
         --with-lava)      WITH_LAVA=1; shift 1;;
         --dev)            DEV_MODE=1; shift 1;;

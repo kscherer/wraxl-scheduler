@@ -8,7 +8,7 @@ services:
       MESOS_ADVERTISE_IP: $HOSTIP
       MESOS_WORK_DIR: /tmp/mesos
       MESOS_LOG_DIR: /tmp/mesos/log
-      MESOS_LOGGING_LEVEL: WARNING
+      MESOS_LOGGING_LEVEL: $LOG_LEVEL
       MESOS_CLUSTER: wraxl
       MESOS_QUORUM: 1
       MESOS_REGISTRY: in_memory
@@ -29,7 +29,7 @@ services:
       MESOS_EXECUTOR_REGISTRATION_TIMEOUT: "5mins"
       MESOS_PORT: "5051"
       MESOS_LOG_DIR: /tmp/mesos/log/
-      MESOS_LOGGING_LEVEL: WARNING
+      MESOS_LOGGING_LEVEL: $LOG_LEVEL
       MESOS_WORK_DIR: /tmp/mesos
       MESOS_RESOURCES: high:1
       # MESOS_ATTRIBUTES: location:ala
