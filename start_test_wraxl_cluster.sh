@@ -178,7 +178,11 @@ if [ "$WITH_LAVA" == '1' ]; then
                          -v /tmp/lava-server:/tmp --name lava-server-init \
                          -h lava-server "${LAVA_IMAGE}" \
                          /bin/lava_db_restore.sh &> /dev/null
-        echo "Initial database restored. Use 'docker exec -it wraxlscheduler_lava-server_1 lava-server manage create_wraxl_worker --hostname $HOSTNAME' to create initial devices once lava server is started."
+        echo "Initial device creation"
+        ${DOCKER_CMD[*]} run -it --rm --volumes-from lava-server-data \
+                         --name lava-server-init \
+                         -h "$HOSTNAME" -e HOSTNAME="$HOSTNAME" "${LAVA_IMAGE}" \
+                         /bin/lava_device_create.sh &> /dev/null
     else
         echo "lava-server-data container already exists."
     fi
