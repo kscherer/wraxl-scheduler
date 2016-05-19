@@ -194,7 +194,8 @@ class WraxlScheduler(Scheduler):
                 jobs = queue.jobs
                 for job in jobs:
                     # Only attempt to re-run the job every 3 minutes
-                    if datetime.utcnow() - job.meta['last_run_attempt'] > timedelta(seconds=180):
+                    now = datetime.utcnow()
+                    if now - job.meta.get('last_run_attempt', now) > timedelta(seconds=180):
                         # expects all args for job in a dict in first arg
                         args = job.args[0]
 
