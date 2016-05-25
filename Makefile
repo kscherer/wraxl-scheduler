@@ -1,5 +1,5 @@
 SHELL = /bin/bash #requires bash
-VERSION = 0.25.0
+VERSION = 0.26.1
 VENV = $(HOME)/.virtualenvs/wraxl_env
 PEX = $(VENV)/bin/pex
 TMP_EGG_DIR = .tmp/mesos.native

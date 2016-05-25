@@ -11,8 +11,8 @@ setup(
     },
     install_requires=[
         'pyramid==1.6.1',
-        'mesos.native==0.25.0',
-        'mesos.interface==0.25.0',
+        'mesos.native==0.26.1',
+        'mesos.interface==0.26.1',
         'rq>=0.5.6',
         'redis>=2.10.0',
         'hiredis>=0.2.0',
