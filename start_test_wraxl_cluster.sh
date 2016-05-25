@@ -45,6 +45,12 @@ Usage $0 [--registry] [--file] [--rm] [--with-lava]
   --rm: Delete containers and volumes when script exits
 
   --with-lava: Creates lava server and data volumes to integrate with wraxl scheduler
+
+  --lava-tag: Set the lava docker container tag
+
+  --mesos-tag: Set the mesos master,agent and wraxl-scheduler container tag
+
+  --dev: Do not start the wraxl-scheduler image
 EOF
     exit 1
 }
@@ -53,7 +59,8 @@ CLEANUP=0
 WITH_LAVA=0
 DEV_MODE=0
 export LOG_LEVEL=WARNING
-export LAVA_VERSION=2016.4
+export MESOS_TAG=0.25.0
+export LAVA_TAG=2016.4
 export REGISTRY=
 declare -a FILES=
 
@@ -66,7 +73,8 @@ while [ "$#" -gt 0 ]; do
         --rm)             CLEANUP=1; shift 1;;
         --with-lava)      WITH_LAVA=1; shift 1;;
         --dev)            DEV_MODE=1; shift 1;;
-        --lava-version=*) LAVA_VERSION="${1#*=}"; shift 1;;
+        --lava-tag=*)     LAVA_TAG="${1#*=}"; shift 1;;
+        --mesos-tag=*)    MESOS_TAG="${1#*=}"; shift 1;;
         *)            usage ;;
     esac
 done
@@ -149,13 +157,13 @@ fi
 export HOSTIP=$(get_primary_ip_address)
 
 if [ "$WITH_LAVA" == '1' ]; then
-    LAVA_IMAGE="${REGISTRY}:5000/lava:${LAVA_VERSION}"
+    LAVA_IMAGE="${REGISTRY}:5000/lava:${LAVA_TAG}"
     LAVA_IMAGE_ID=$(${DOCKER_CMD[*]} images "$LAVA_IMAGE" )
     if [ -z "$LAVA_IMAGE_ID" ]; then
         echo "Pulling $LAVA_IMAGE"
         ${DOCKER_CMD[*]} pull "$LAVA_IMAGE"
     fi
-    LAVA_WORKER_IMAGE="${REGISTRY}:5000/lava-worker:${LAVA_VERSION}"
+    LAVA_WORKER_IMAGE="${REGISTRY}:5000/lava-worker:${LAVA_TAG}"
     LAVA_WORKER_IMAGE_ID=$(${DOCKER_CMD[*]} images "$LAVA_WORKER_IMAGE" )
     if [ -z "$LAVA_WORKER_IMAGE_ID" ]; then
         echo "Pulling $LAVA_WORKER_IMAGE"

@@ -1,7 +1,7 @@
 version: '2'
 services:
   master:
-    image: $REGISTRY:5000/mesos-master:0.25.0
+    image: $REGISTRY:5000/mesos-master:$MESOS_TAG
     ports:
       - "5050:5050"
     environment:
@@ -16,7 +16,7 @@ services:
       - /tmp
 
   agent:
-    image: $REGISTRY:5000/mesos-agent:0.25.0
+    image: $REGISTRY:5000/mesos-agent:$MESOS_TAG
     ports:
       - "5051:5051"
     links:
