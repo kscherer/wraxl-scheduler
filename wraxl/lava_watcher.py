@@ -141,7 +141,7 @@ class LavaQueueWatcher(object):
             self.queue = Queue(self.queue_prefix + '_high',
                                connection=self.redis_conn)
             self.lava_server = self.config.get('lava', self.opts.lava_server)
-            self.lava_server_ip = socket.gethostbyname(self.config['lava'])
+            self.lava_server_ip = socket.gethostbyname(self.lava_server)
 
         # will attempt to create lava server connection. Since load_config is
         # called by check_lava_queue, this will keep retrying
