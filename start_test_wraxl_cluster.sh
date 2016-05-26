@@ -58,6 +58,7 @@ EOF
 CLEANUP=0
 WITH_LAVA=0
 DEV_MODE=0
+PULL_IMAGES=1
 export LOG_LEVEL=WARNING
 export MESOS_TAG=0.26.1
 export LAVA_TAG=2016.4
@@ -75,6 +76,7 @@ while [ "$#" -gt 0 ]; do
         --dev)            DEV_MODE=1; shift 1;;
         --lava-tag=*)     LAVA_TAG="${1#*=}"; shift 1;;
         --mesos-tag=*)    MESOS_TAG="${1#*=}"; shift 1;;
+        --no-pull)        PULL_IMAGES=0; shift 1;;
         *)            usage ;;
     esac
 done
@@ -156,16 +158,23 @@ fi
 
 export HOSTIP=$(get_primary_ip_address)
 
+if [ "$PULL_IMAGES" == '1' ]; then
+    echo "Pull mesos master, agent and scheduler images"
+    ${DOCKER_CMD[*]} pull "${REGISTRY}:5000/mesos-master:${MESOS_TAG}"
+    ${DOCKER_CMD[*]} pull "${REGISTRY}:5000/mesos-agent:${MESOS_TAG}"
+    ${DOCKER_CMD[*]} pull "${REGISTRY}:5000/mesos-scheduler:${MESOS_TAG}"
+fi
+
 if [ "$WITH_LAVA" == '1' ]; then
     LAVA_IMAGE="${REGISTRY}:5000/lava:${LAVA_TAG}"
     LAVA_IMAGE_ID=$(${DOCKER_CMD[*]} images "$LAVA_IMAGE" )
-    if [ -z "$LAVA_IMAGE_ID" ]; then
+    if [ -z "$LAVA_IMAGE_ID" ] || [ "$PULL_IMAGES" == '1' ]; then
         echo "Pulling $LAVA_IMAGE"
         ${DOCKER_CMD[*]} pull "$LAVA_IMAGE"
     fi
     LAVA_WORKER_IMAGE="${REGISTRY}:5000/lava-worker:${LAVA_TAG}"
     LAVA_WORKER_IMAGE_ID=$(${DOCKER_CMD[*]} images "$LAVA_WORKER_IMAGE" )
-    if [ -z "$LAVA_WORKER_IMAGE_ID" ]; then
+    if [ -z "$LAVA_WORKER_IMAGE_ID" ] || [ "$PULL_IMAGES" == '1' ]; then
         echo "Pulling $LAVA_WORKER_IMAGE"
         ${DOCKER_CMD[*]} pull "$LAVA_WORKER_IMAGE"
     fi
