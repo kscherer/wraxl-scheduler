@@ -141,16 +141,22 @@ class LavaQueueWatcher(object):
             self.queue = Queue(self.queue_prefix + '_high',
                                connection=self.redis_conn)
             self.lava_server = self.config.get('lava', self.opts.lava_server)
-            self.lava_server_ip = socket.gethostbyname(self.lava_server)
+            try:
+                self.lava_server_ip = socket.gethostbyname(self.lava_server)
+            except socket.gaierror:
+                log.warning('Unable to find ip for %s. Lava watcher disabled.', self.lava_server)
+                self.lava_server_ip = None
 
         # will attempt to create lava server connection. Since load_config is
         # called by check_lava_queue, this will keep retrying
         self._setup_lava_rpc()
 
     def _setup_lava_rpc(self):
-        self.rpc_server.create_rpc_server(self.lava_server,
-                                          self.config.get('lava_user'),
-                                          self.config.get('lava_token'))
+        # if lava_server does not resolve, trying to connect will certainly fail
+        if self.lava_server_ip is not None:
+            self.rpc_server.create_rpc_server(
+                self.lava_server, self.config.get('lava_user'),
+                self.config.get('lava_token'))
 
     def shutdown(self):
         self.shutting_down = True
