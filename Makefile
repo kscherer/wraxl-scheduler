@@ -35,15 +35,15 @@ build: dist/wraxl_scheduler ## Default: Build a pex bundle of the wraxl schedule
 image: dist/wraxl_scheduler ## Create a docker image with latest wraxl scheduler pex bundle
 	docker build --rm -t $(REGISTRY)/mesos-scheduler:$(VERSION) --file Dockerfile-wraxl-scheduler .
 
-mesos-images:
+mesos-images: ## Build images for mesos master and mesos agent
 	docker build -f Dockerfile-mesos -t $(REGISTRY)/$@:$(VERSION) .
 	docker build -f Dockerfile-mesos-master -t $(REGISTRY)/$@:$(VERSION) .
 	docker build -f Dockerfile-mesos-agent -t $(REGISTRY)/$@:$(VERSION) .
 
-push_scheduler: image
+push_scheduler: image ## Push only the mesos-scheduler image to private registries
 	./push_image.sh mesos-scheduler:$(VERSION)
 
-push_all: image mesos-images
+push_all: image mesos-images ## Push the mesos-master, mesos-slave and mesos-scheduler images to private registries
 	./push_image.sh mesos-master:$(VERSION)
 	./push_image.sh mesos-agent:$(VERSION)
 	./push_image.sh mesos-scheduler:$(VERSION)
