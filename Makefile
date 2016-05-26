@@ -8,6 +8,7 @@ DEPS = setup.py $(wildcard wraxl/*.py) wraxl/scheduler.yaml
 PIP = $(HOME)/.local/bin/pip
 VENVWRAPPER = $(HOME)/.local/bin/virtualenvwrapper.sh
 DEBS = python-dev libyaml-dev
+REGISTRY = wr-docker-registry:5000
 
 .PHONY: build image setup clean test help
 
@@ -32,7 +33,20 @@ dist/wraxl_scheduler: $(DEPS) $(EGG) $(PEX)
 build: dist/wraxl_scheduler ## Default: Build a pex bundle of the wraxl scheduler
 
 image: dist/wraxl_scheduler ## Create a docker image with latest wraxl scheduler pex bundle
-	docker build --rm -t wr-docker-registry:5000/mesos-scheduler:$(VERSION) --file Dockerfile-wraxl-scheduler .
+	docker build --rm -t $(REGISTRY)/mesos-scheduler:$(VERSION) --file Dockerfile-wraxl-scheduler .
+
+mesos-images:
+	docker build -f Dockerfile-mesos -t $(REGISTRY)/$@:$(VERSION) .
+	docker build -f Dockerfile-mesos-master -t $(REGISTRY)/$@:$(VERSION) .
+	docker build -f Dockerfile-mesos-agent -t $(REGISTRY)/$@:$(VERSION) .
+
+push_scheduler: image
+	./push_image.sh mesos-scheduler:$(VERSION)
+
+push_all: image mesos-images
+	./push_image.sh mesos-master:$(VERSION)
+	./push_image.sh mesos-agent:$(VERSION)
+	./push_image.sh mesos-scheduler:$(VERSION)
 
 # mesos.interface must be installed as an egg to avoid hiding
 # installation of mesos.native egg

@@ -1,0 +1,7 @@
+FROM wr-docker-registry:5000/mesos:0.26.1
+
+MAINTAINER Konrad Scherer <Konrad.Scherer@windriver.com>
+
+EXPOSE 5050
+
+CMD ["mesos-master"]
