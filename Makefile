@@ -101,9 +101,9 @@ ifndef MASTER
 	$(error MASTER which defines the ip address of mesos master is required )
 endif
 ifndef HOST_IP
-	@echo "Detecting primary IP. When behind a VPN this will not be correct"
+	@echo "Detecting IP visible within WR by finding path to ala-git."
 	@echo "This is the IP used by the mesos master to connect to the scheduler"
-	$(eval HOST_IP=$(shell ip -4 route get 8.8.8.8 | awk 'NR==1 {print $$NF}'))
+	$(eval HOST_IP=$(shell ip -4 route get 147.11.178.22 | awk 'NR==1 {print $$NF}'))
 endif
 	. $(VENV)/bin/activate; LIBPROCESS_IP=$(HOST_IP) python -m wraxl.scheduler \
 		--master $(MASTER):5050 --hostname $(shell hostname) --redis $(MASTER) \
