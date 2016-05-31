@@ -13,7 +13,7 @@ RUN \
   apt-get -y update && \
   apt-get -y --no-install-recommends install mesos=${VERSION}-2.0.19.ubuntu1404 \
     docker-engine=1.11.1-0~trusty curl && \
-  curl -s -o /bin/dumb-init http://yow-mirror.wrs.com/mirror/dumb-init/dumb-init_1.0.0_amd64 && \
+  curl -s -o /bin/dumb-init http://yow-mirror.wrs.com/mirror/dumb-init/dumb-init_1.0.1_amd64 && \
   chmod +x /bin/dumb-init && \
   apt-get clean && rm -rf /var/lib/apt/lists/* 
 
