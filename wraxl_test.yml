@@ -31,7 +31,7 @@ services:
       MESOS_LOG_DIR: /tmp/mesos/log/
       MESOS_LOGGING_LEVEL: $LOG_LEVEL
       MESOS_WORK_DIR: /tmp/mesos
-      MESOS_RESOURCES: high:1
+      MESOS_RESOURCES: high:1;mem:20480
       # MESOS_ATTRIBUTES: location:ala
     tmpfs:
       - /tmp
