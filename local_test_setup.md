@@ -176,7 +176,7 @@ To start the `devbuild_queue_watcher.py` daemon, open a new terminal
 and run:
 
     cd /home/wrlbuild/wr-buildscripts
-    ./devbuild_queue_watcher.py \
+    ./devbuild_queue_watcher.py --redis localhost \
       --config test/test_scheduler_config.yaml
 
 To start the `devbuild_watcher.py` daemon, open a new terminal
@@ -187,12 +187,17 @@ and run:
 
 To see the builds in progress go to: http://localhost:5000
 
+Generate the randconfig-X and worldconfig-X files:
+
+    cd /home/wrlbuild/wr-buildscripts
+    ./process_nx_configs.sh
+
 Now open another terminal and go a wrlinux dev tree (not the one in
 /home/wrlbuild), make sure it is up to date and add some commits
 anywhere in the tree. Then run
 
-    wrgit devbuild --redis <external ip of test machine> \
-        --config test/single.yaml
+    wrgit devbuild --server=<external ip of test machine> \
+        --config=test/single
 
 Feel free to use or add a configuration that better suits your
 testing.

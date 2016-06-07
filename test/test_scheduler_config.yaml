@@ -17,9 +17,19 @@ releases:
     email:
       - konrad.scherer@windriver.com
   - name: 8
-    branch: master
+    branch: WRLINUX_8_0_HEAD
     configs: randconfigs-8
     world_configs: worldconfigs-8
+    hosts:
+      - fedora22_64
+      - ubuntu1404_64
+    weight: 30
+    email:
+      - konrad.scherer@windriver.com
+  - name: 9
+    branch: master
+    configs: randconfigs-9
+    world_configs: worldconfigs-9
     hosts:
       - fedora22_64
       - ubuntu1404_64
