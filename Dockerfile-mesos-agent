@@ -1,4 +1,4 @@
-FROM wr-docker-registry:5000/mesos:0.26.1
+FROM wr-docker-registry:5000/mesos:0.27.2
 
 MAINTAINER Konrad Scherer <Konrad.Scherer@windriver.com>
 

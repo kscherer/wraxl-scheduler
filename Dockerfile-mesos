@@ -2,7 +2,7 @@ FROM ubuntu:trusty
 MAINTAINER Konrad Scherer <Konrad.Scherer@windriver.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV VERSION 0.26.1
+ENV VERSION 0.27.2
 
 RUN \
   sed -i 's#archive.ubuntu.com#yow-mirror.wrs.com/mirror/ubuntu.com#' /etc/apt/sources.list && \
@@ -11,7 +11,7 @@ RUN \
   apt-key adv --keyserver keyserver.ubuntu.com --recv E56151BF && \
   apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && \
   apt-get -y update && \
-  apt-get -y --no-install-recommends install mesos=${VERSION}-2.0.19.ubuntu1404 \
+  apt-get -y --no-install-recommends install mesos=${VERSION}-2.0.15.ubuntu1404 \
     docker-engine=1.11.1-0~trusty curl && \
   curl -s -o /bin/dumb-init http://yow-mirror.wrs.com/mirror/dumb-init/dumb-init_1.0.1_amd64 && \
   chmod +x /bin/dumb-init && \

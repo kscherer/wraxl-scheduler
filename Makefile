@@ -1,5 +1,5 @@
 SHELL = /bin/bash #requires bash
-VERSION = 0.26.1
+VERSION = 0.27.2
 VENV = $(HOME)/.virtualenvs/wraxl_env
 PEX = $(VENV)/bin/pex
 TMP_EGG_DIR = .tmp/mesos.native
@@ -21,24 +21,25 @@ help:
 
 $(EGG):
 	mkdir -p $(TMP_EGG_DIR); \
-	curl -s -o $(EGG) http://yow-mirror.wrs.com/mirror/mesos/mesos-$(VERSION)-py2.7-linux-x86_64.egg
+	curl -s -o $(EGG) http://yow-mirror.wrs.com/mirror/mesos/mesos.native-$(VERSION)-py2.7-linux-x86_64.egg
 
 $(PEX): $(VENV)
 
 dist/wraxl_scheduler: $(DEPS) $(EGG) $(PEX)
 	. $(VENV)/bin/activate; \
-	rm -f ~/.pex/build/wraxl*; \
-	python setup.py bdist_pex --bdist-all --pex-args="-v --repo=$(TMP_EGG_DIR)"
+	rm -f $(PWD)/.pex/build/wraxl*; \
+	python setup.py bdist_pex --bdist-all --pex-args="-v --pex-root=$(PWD)/.pex --repo=$(TMP_EGG_DIR)"
 
 build: dist/wraxl_scheduler ## Default: Build a pex bundle of the wraxl scheduler
 
 image: dist/wraxl_scheduler ## Create a docker image with latest wraxl scheduler pex bundle
-	docker build --rm -t $(REGISTRY)/mesos-scheduler:$(VERSION) --file Dockerfile-wraxl-scheduler .
+	docker build --pull --rm -t $(REGISTRY)/mesos-scheduler:$(VERSION) --file Dockerfile-wraxl-scheduler .
 
 mesos-images: ## Build images for mesos master and mesos agent
-	docker build -f Dockerfile-mesos -t $(REGISTRY)/$@:$(VERSION) .
-	docker build -f Dockerfile-mesos-master -t $(REGISTRY)/$@:$(VERSION) .
-	docker build -f Dockerfile-mesos-agent -t $(REGISTRY)/$@:$(VERSION) .
+	docker pull ubuntu:trusty
+	docker build -f Dockerfile-mesos -t $(REGISTRY)/mesos:$(VERSION) .
+	docker build -f Dockerfile-mesos-master -t $(REGISTRY)/mesos-master:$(VERSION) .
+	docker build -f Dockerfile-mesos-agent -t $(REGISTRY)/mesos-agent:$(VERSION) .
 
 push_scheduler: image ## Push only the mesos-scheduler image to private registries
 	./push_image.sh mesos-scheduler:$(VERSION)
@@ -91,7 +92,7 @@ $(VENVWRAPPER): $(PIP)
 	$(PIP) install --user --upgrade virtualenv virtualenvwrapper
 
 clean: ## Delete virtualenv and all build directories
-	rm -rf $(VENV) wraxl.egg-info build dist .check
+	rm -rf $(VENV) wraxl.egg-info build dist .check .tmp
 
 test: ## Run tests
 	. $(VENV)/bin/activate; python setup.py test
