@@ -194,8 +194,7 @@ def check_lava_queue(watcher):
         device_type = choose_pending_device_type(watcher.rpc_server)
         lava_version = watcher.rpc_server.get_lava_version()
         if lava_version:
-            launch_qemu_worker(watcher.queue, device_type, watcher.lava_server_ip,
-                               lava_version)
+            launch_qemu_worker(watcher, device_type, lava_version)
 
 
 def get_master_json(master_uri, endpoint):
@@ -301,14 +300,16 @@ def choose_pending_device_type(rpc_server):
     return oldest_device_type
 
 
-def launch_qemu_worker(queue, device_type, lava_server_ip, lava_watcher_tag):
+def launch_qemu_worker(watcher, device_type, lava_watcher_tag):
     job = {'name': 'lava-worker-' + device_type,
            'docker_image': 'lava-worker:' + lava_watcher_tag,
            'options': [util.DOCKER_RUN_PRIVILEGED],
            'cmd': '/bin/lava_worker_start.sh'}
 
-    job['environment'] = [('LAVA_SERVER_IP', lava_server_ip),
+    job['environment'] = [('LAVA_SERVER_IP', watcher.lava_server_ip),
                           ('LAVA_DEVICE_TYPE', device_type),
+                          ('LAVA_USER', watcher.rpc_server.lava_user),
+                          ('LAVA_TOKEN', watcher.rpc_server.lava_token),
                           ('LAVA_WORKER_IDLE_CHECK', 'yes')]
     job['labels'] = [('type', 'lava'), ('device_type', device_type)]
 
@@ -319,7 +320,7 @@ def launch_qemu_worker(queue, device_type, lava_server_ip, lava_watcher_tag):
 
     try:
         log.info("Enqueue lava-worker for device type %s.", device_type)
-        queue.enqueue('wraxl_queue.exec_cmd', job, timeout=10800)
+        watcher.queue.enqueue('wraxl_queue.exec_cmd', job, timeout=10800)
     except ConnectionError:
         log.warning("Unable to connect to Redis server")
 
