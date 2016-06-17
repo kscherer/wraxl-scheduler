@@ -308,8 +308,8 @@ def launch_qemu_worker(watcher, device_type, lava_watcher_tag):
 
     job['environment'] = [('LAVA_SERVER_IP', watcher.lava_server_ip),
                           ('LAVA_DEVICE_TYPE', device_type),
-                          ('LAVA_USER', watcher.rpc_server.lava_user),
-                          ('LAVA_TOKEN', watcher.rpc_server.lava_token),
+                          ('LAVA_USER', watcher.rpc_server.user),
+                          ('LAVA_TOKEN', watcher.rpc_server.token),
                           ('LAVA_WORKER_IDLE_CHECK', 'yes')]
     job['labels'] = [('type', 'lava'), ('device_type', device_type)]
 
