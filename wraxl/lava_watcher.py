@@ -312,6 +312,11 @@ def launch_qemu_worker(queue, device_type, lava_server_ip, lava_watcher_tag):
                           ('LAVA_WORKER_IDLE_CHECK', 'yes')]
     job['labels'] = [('type', 'lava'), ('device_type', device_type)]
 
+    # lava qemu support uses libguestfs which uses supermin which
+    # expects a kernel and modules available
+    job['volumes'] = [("/boot", "/boot", mesos_pb2.Volume.RO),
+                      ("/lib/modules", "/lib/modules", mesos_pb2.Volume.RO)]
+
     try:
         log.info("Enqueue lava-worker for device type %s.", device_type)
         queue.enqueue('wraxl_queue.exec_cmd', job, timeout=10800)
