@@ -61,7 +61,7 @@ DEV_MODE=0
 PULL_IMAGES=1
 export LOG_LEVEL=WARNING
 export MESOS_TAG=0.27.2
-export LAVA_TAG=2016.4
+export LAVA_TAG=2016.6
 export REGISTRY=
 declare -a FILES=
 
