@@ -1,6 +1,7 @@
 SHELL = /bin/bash #requires bash
 VERSION = 0.27.2
-VENV = $(HOME)/.virtualenvs/wraxl_env
+VENV_NAME = wraxl_env
+VENV = $(HOME)/.virtualenvs/$(VENV_NAME)
 PEX = $(VENV)/bin/pex
 TMP_EGG_DIR = .tmp/mesos.native
 EGG = $(TMP_EGG_DIR)/mesos.native-$(VERSION)-py2.7-linux-x86_64.egg
@@ -28,6 +29,7 @@ $(PEX): $(VENV)
 dist/wraxl_scheduler: $(DEPS) $(EGG) $(PEX)
 	. $(VENV)/bin/activate; \
 	rm -f $(PWD)/.pex/build/wraxl*; \
+	export PEX_ROOT=$(PWD)/.pex; \
 	python setup.py bdist_pex --bdist-all --pex-args="-v --pex-root=$(PWD)/.pex --repo=$(TMP_EGG_DIR)"
 
 build: dist/wraxl_scheduler ## Default: Build a pex bundle of the wraxl scheduler
@@ -54,7 +56,7 @@ push_all: image mesos-images ## Push the mesos-master, mesos-slave and mesos-sch
 $(VENV): $(EGG) $(VENVWRAPPER) .check
 	export VIRTUALENVWRAPPER_VIRTUALENV=$(HOME)/.local/bin/virtualenv; \
 	source $(VENVWRAPPER); \
-	test -d $(VENV) || mkvirtualenv wraxl_env; \
+	test -d $(VENV) || mkvirtualenv $(VENV_NAME); \
 	touch $(VENV); \
 	. $(VENV)/bin/activate; \
 	pip install --egg mesos.interface==$(VERSION); \
