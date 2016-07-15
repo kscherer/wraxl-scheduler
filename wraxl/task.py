@@ -64,7 +64,8 @@ class Task():
         # add default environment, bind mounts and tmpfs
         self.add_env([('MESOS_TASK_ID', task_id)])
         self.add_volumes(DOCKER_VOLUMES)
-        self.add_parameters([('tmpfs', '/tmp:rw,noexec,nosuid')])
+        self.add_parameters([('tmpfs', '/tmp:rw,noexec,nosuid'),
+                             ('oom-kill-disable', 'true')])
 
     def id(self):
         return self.taskinfo.task_id.value
